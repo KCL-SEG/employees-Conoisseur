@@ -10,7 +10,7 @@ need to keep track of commision as well, can be fixed or based of the number of 
     
 """
 class Employee:
-    def __init__(self, name, commission=None):
+    def __init__(self, name, commission):
         self.name = name
         self.commission = commission
 
@@ -22,7 +22,7 @@ class Employee:
 
 class SalaryEmployee(Employee):
 
-    def __init__(self,name,monthly_salary,commission=None):
+    def __init__(self,name,monthly_salary,commission):
         super().__init__(name,commission)
         self.monthly_salary = monthly_salary
 
@@ -36,7 +36,7 @@ class SalaryEmployee(Employee):
         return pay
 
 class HourlyEmployee(Employee):
-    def __init__(self,name,hours_worked,pay_per_hour,commission=None):
+    def __init__(self,name,hours_worked,pay_per_hour,commission):
         super().__init__(name,commission)
         self.hours_worked = hours_worked
         self.pay_per_hour = pay_per_hour
@@ -72,14 +72,19 @@ class ContractCommission(Commission):
     def calculateCommision(self):
         return self.contracts_landed * self.commission_per_contract
 
+class NoCommission(Commission):
+    def calculateCommision(self):
+        return 0
+
+
 
 # Billie works on a monthly salary of 4000.  Their total pay is 4000.
 #billie = Employee('Billie')
-billie = SalaryEmployee("Billie",4000)
+billie = SalaryEmployee("Billie",4000,NoCommission())
 
 # Charlie works on a contract of 100 hours at 25/hour.  Their total pay is 2500.
 #charlie = Employee('Charlie')
-charlie = HourlyEmployee("Charlie",100,25)
+charlie = HourlyEmployee("Charlie",100,25,NoCommission())
 
 # Renee works on a monthly salary of 3000 and receives a commission for 4 contract(s) at 200/contract.  Their total pay is 3800.
 #renee = Employee('Renee')
