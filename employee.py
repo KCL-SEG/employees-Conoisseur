@@ -1,14 +1,7 @@
 """Employee pay calculator."""
 """ENTER YOUR SOLUTION HERE!"""
 
-"""
-Thoughts:
-need to keep track of if worker is salary (paid monthly) or hourly (paid hourly)
-    Maybe make subclasses for these?
-need to keep track of commision as well, can be fixed or based of the number of contracts 
-    calculate with multiplier
-    
-"""
+
 class Employee:
     def __init__(self, name, commission):
         self.name = name
@@ -35,6 +28,16 @@ class SalaryEmployee(Employee):
 
         return pay
 
+    def __str__(self):
+        returnString = "Name: " + self.name + "\n"
+        returnString += "Fixed pay per month: " + str(self.monthly_salary) + "\n"
+        returnString += "Commission Type " + self.commission.getCommissionType() + "\n"
+        returnString += "Total Pay: " + str(self.get_pay())
+
+
+        return returnString
+
+
 class HourlyEmployee(Employee):
     def __init__(self,name,hours_worked,pay_per_hour,commission):
         super().__init__(name,commission)
@@ -50,9 +53,21 @@ class HourlyEmployee(Employee):
 
         return pay
 
+    def __str__(self):
+        returnString = "Name: " + self.name + "\n"
+        returnString += "Hours Worked: " + str(self.hours_worked) + "\n"
+        returnString += "Pay per hour: " + str(self.pay_per_hour) + "\n"
+        returnString += "Commission Type " + self.commission.getCommissionType() + "\n"
+        returnString += "Total Pay: " + str(self.get_pay())
+
+        return returnString
+
 class Commission():
 
     def calculateCommision(self):
+        pass
+
+    def getCommissionType(self):
         pass
 
 class FixedCommision(Commission):
@@ -63,6 +78,9 @@ class FixedCommision(Commission):
     def calculateCommision(self):
         return self.fixed_value
 
+    def getCommissionType(self):
+        return "Fixed Commission"
+
 class ContractCommission(Commission):
 
     def __init__(self,contracts_landed,commission_per_contract):
@@ -72,9 +90,15 @@ class ContractCommission(Commission):
     def calculateCommision(self):
         return self.contracts_landed * self.commission_per_contract
 
+    def getCommissionType(self):
+        return "Contract Commission"
+
 class NoCommission(Commission):
     def calculateCommision(self):
         return 0
+
+    def getCommissionType(self):
+        return "No Commission"
 
 
 
@@ -101,4 +125,6 @@ robbie = SalaryEmployee("Robbie",2000,FixedCommision(1500))
 # Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.  Their total pay is 4200.
 #ariel = Employee('Ariel')
 ariel = HourlyEmployee("Ariel",120,30,FixedCommision(600))
+
+
 
