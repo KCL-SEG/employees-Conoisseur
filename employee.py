@@ -31,7 +31,7 @@ class SalaryEmployee(Employee):
 
     def __str__(self):
         returnString = f'{self.name} works on a monthly salary of {self.monthly_salary}'
-        if (self.commission):
+        if (self.commission.getCommissionType() != 'No Commission'):
             returnString += f'and receives a bonus commission of {self.commission.calculateCommision()}'
         returnString += f'Their total pay is {self.get_pay()}'
         # returnString = "Name: " + self.name + "\n"
@@ -59,9 +59,9 @@ class HourlyEmployee(Employee):
         return pay
 
     def __str__(self):
-        returnString = f'{self.name} works on a contract of {self.hours_worked} at {self.pay_per_hour}/hour'
-        if (self.commission):
-            returnString += f'and receives a bonus commission of {self.commission.calculateCommision()}'
+        returnString = f'{self.name} works on a contract of {self.hours_worked} hours at {self.pay_per_hour}/hour'
+        if (self.commission.getCommissionType() != 'No Commission'):
+            returnString += f' and receives a bonus commission of {self.commission.calculateCommision()} '
         returnString += f'Their total pay is {self.get_pay()}'
         # returnString = "Name: " + self.name + "\n"
         # returnString += "Hours Worked: " + str(self.hours_worked) + "\n"
