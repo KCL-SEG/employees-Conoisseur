@@ -1,6 +1,7 @@
 """Employee pay calculator."""
 """ENTER YOUR SOLUTION HERE!"""
 
+import re
 
 class Employee:
     def __init__(self, name, commission):
@@ -29,10 +30,14 @@ class SalaryEmployee(Employee):
         return pay
 
     def __str__(self):
-        returnString = "Name: " + self.name + "\n"
-        returnString += "Fixed pay per month: " + str(self.monthly_salary) + "\n"
-        returnString += "Commission Type " + self.commission.getCommissionType() + "\n"
-        returnString += "Total Pay: " + str(self.get_pay())
+        returnString = f'{self.name} works on a monthly salary of {self.monthly_salary}'
+        if (self.commission):
+            returnString += f'and receives a bonus commission of {self.commission.calculateCommision()}'
+        returnString += f'Their total pay is {self.get_pay()}'
+        # returnString = "Name: " + self.name + "\n"
+        # returnString += "Fixed pay per month: " + str(self.monthly_salary) + "\n"
+        # returnString += "Commission Type " + self.commission.getCommissionType() + "\n"
+        # returnString += "Total Pay: " + str(self.get_pay())
 
 
         return returnString
@@ -54,11 +59,15 @@ class HourlyEmployee(Employee):
         return pay
 
     def __str__(self):
-        returnString = "Name: " + self.name + "\n"
-        returnString += "Hours Worked: " + str(self.hours_worked) + "\n"
-        returnString += "Pay per hour: " + str(self.pay_per_hour) + "\n"
-        returnString += "Commission Type " + self.commission.getCommissionType() + "\n"
-        returnString += "Total Pay: " + str(self.get_pay())
+        returnString = f'{self.name} works on a contract of {self.hours_worked} at {self.pay_per_hour}/hour'
+        if (self.commission):
+            returnString += f'and receives a bonus commission of {self.commission.calculateCommision()}'
+        returnString += f'Their total pay is {self.get_pay()}'
+        # returnString = "Name: " + self.name + "\n"
+        # returnString += "Hours Worked: " + str(self.hours_worked) + "\n"
+        # returnString += "Pay per hour: " + str(self.pay_per_hour) + "\n"
+        # returnString += "Commission Type " + self.commission.getCommissionType() + "\n"
+        # returnString += "Total Pay: " + str(self.get_pay())
 
         return returnString
 
@@ -126,5 +135,15 @@ robbie = SalaryEmployee("Robbie",2000,FixedCommision(1500))
 #ariel = Employee('Ariel')
 ariel = HourlyEmployee("Ariel",120,30,FixedCommision(600))
 
+# print(billie.get_pay())
+# print(type(billie.get_pay()))
+# print(str(billie))
+#
+# assert billie.get_pay() == 4000
+# string = str(billie)
+# print(str(billie))
+# regex = '^Billie works on a monthly salary of 4000.\s+Their total pay is 4000.$'
+# print(regex)
+# assert re.match(regex, string)
 
 
