@@ -16,6 +16,17 @@ def test_charlie():
     regex = '^Charlie works on a contract of 100 hours at 25/hour.\s+Their total pay is 2500.$'
     assert re.match(regex, string)
 
+def test_renee():
+    assert renee.get_pay() == 3800
+    string = str(renee)
+    regex = 'Renee works on a monthly salary of 3000 and receives a commission for 4 contracts at 200/contract. Their total pay is 3800.'
+    assert re.match(regex, string)
+
+def test_jan():
+    assert jan.get_pay() == 4410
+    string = str(jan)
+    regex  = 'Jan works on a contract of 150 hours at 25/hour and receives a commission for 3 contracts at 220/contract. Their total pay is 4410.'
+    assert re.match(regex, string)
 
 def test_robbie():
     assert robbie.get_pay() == 3500
@@ -28,24 +39,3 @@ def test_ariel():
     string = str(ariel)
     regex = '^Ariel works on a contract of 120 hours at 30/hour and receives a bonus commission of 600.\s+Their total pay is 4200.$'
     assert re.match(regex, string)
-
-def test_assert_true():
-    assert True
-
-def test_assert_true2():
-    assert True
-
-def test_assert_true3():
-    assert True
-
-def test_assert_true4():
-    assert True
-
-def test_assert_true5():
-    assert True
-
-def test_assert_true6():
-    assert True
-
-def test_assert_true7():
-    assert True
